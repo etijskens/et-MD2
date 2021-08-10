@@ -1,7 +1,16 @@
-********
+******
 et-MD2
-********
+******
 
-<Enter a one-sentence description of this project here.>
+Toy code for testing MD algorithms and implementations
+
+languages:
+* Python
+* C++
+
+Hardware
+* CPU
+* GPU
+
 
 * Documentation: https://et_md2.readthedocs.io
