@@ -11,11 +11,9 @@ sys.path.insert(0,'.')
 
 from et_md2.atoms import Atoms
 import et_md2.verletlist
-VerletList = et_md2.verletlist.set_impl(impl='py')
 # from et_md2.grid import Grid
 
 import numpy as np
-
 
 
 def test_build_simple_1():
@@ -29,6 +27,7 @@ def test_build_simple_1():
         r[:,ir] = x
         print(f'*** {msg[ir]} ***')
 
+        VerletList = et_md2.verletlist.set_impl(impl='py')
         vl = VerletList(cutoff=2.5)
         vl.build_simple(r, keep2d=True)
         print(vl)
@@ -65,6 +64,8 @@ def test_build_simple_2():
         r[:,:] = 0.0
         r[:,ir] = x
         print(f'*** {msg[ir]} ***')
+
+        VerletList = et_md2.verletlist.set_impl(impl='py')
         vl = VerletList(cutoff=2.0)
         vl.build_simple(r, keep2d=True)
         print(vl)
@@ -100,6 +101,8 @@ def test_vl2pairs():
         r[:,:] = 0.0
         r[:,ir] = x
         print(f'*** {msg[ir]} ***')
+
+        VerletList = et_md2.verletlist.set_impl(impl='py')
         vl = VerletList(cutoff=2.0)
         vl.build_simple(r, keep2d=True)
         print(vl)
@@ -115,6 +118,8 @@ def test_build_simple_2b():
         r[:,:] = 0.0
         r[:,ir] = x
         print(f'*** {msg[ir]} ***')
+
+        VerletList = et_md2.verletlist.set_impl(impl='py')
         vl = VerletList(cutoff=2.0)
         vl.build_simple(r, keep2d=True)
         # print(vl)
@@ -132,6 +137,8 @@ def test_neighbours():
         r[:,:] = 0.0
         r[:,ir] = x
         print(f'*** {msg[ir]} ***')
+
+        VerletList = et_md2.verletlist.set_impl(impl='py')
         vl = VerletList(cutoff=2.0)
         vl.build_simple(r)
         print(vl.vl_size[0])
@@ -153,6 +160,8 @@ def test_build_1():
         r[:,:] = 0.0
         r[:,ir] = x
         print(f'*** {msg[ir]} ***')
+
+        VerletList = et_md2.verletlist.set_impl(impl='py')
         vl = VerletList(cutoff=cutoff)
         vl.build(r)
         print(vl)
@@ -172,6 +181,7 @@ def test_build_2():
     atoms = Atoms()
     atoms.lattice_positions(upper_corner=(5,5,5))
 
+    VerletList = et_md2.verletlist.set_impl(impl='py')
     vl = VerletList(cutoff=cutoff)
     vl.build(atoms.r)
     print(vl)
@@ -211,7 +221,7 @@ def test_build_2():
 # (normally all tests are run with pytest)
 # ==============================================================================
 if __name__ == "__main__":
-    the_test_you_want_to_debug = test_build_1
+    the_test_you_want_to_debug = test_build_2
 
     print(f'__main__ running {the_test_you_want_to_debug}')
     the_test_you_want_to_debug()

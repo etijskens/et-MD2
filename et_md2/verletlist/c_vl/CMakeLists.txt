@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Build C++ module et_md2.verletlist.impl_cpp
+# Build C++ module et_md2.verletlist.c_vl
 #   > cd _cmake_build
 # For a clean build:
 #   > rm -rf *
@@ -21,7 +21,7 @@
     cmake_minimum_required(VERSION 3.4)
   # Find pybind11_DIR, if python can be found...
   # (that is we assume that the virtual environment is activated)
-    project(impl_cpp CXX)
+    project(c_vl CXX)
     find_program(
         PYTHON_EXECUTABLE
         NAMES python
@@ -63,6 +63,8 @@
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG")
 
+add_subdirectory(vl_lib)
+
 # Add include directories
 #include_directories(
 #     path/to/dir1
@@ -70,23 +72,22 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG")
 # )
 
 # Add link directories
-# link_directories(
-#     path/to/dir1
-# )
+link_directories(
+    vl_lib
+)
 
 # Add link libraries (lib1 -> liblib1.so)
-# link_libraries(
-#     lib1
-#     lib2
-# )
+link_libraries(
+    vl_lib
+)
 ####################################################################################################
 
 #<< begin boilerplate code
   # Create the target:
-    pybind11_add_module(impl_cpp impl_cpp.cpp)
+    pybind11_add_module(c_vl c_vl.cpp)
 
     install(
-        FILES       "_cmake_build/impl_cpp${PYTHON_MODULE_EXTENSION}"
+        FILES       "_cmake_build/c_vl${PYTHON_MODULE_EXTENSION}"
         DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/.."
     )
 #>> end boilerplate code

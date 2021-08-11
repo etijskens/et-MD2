@@ -12,8 +12,8 @@ import numpy as np
 
 VerletList = None
 
-def set_impl(impl):
-    """Select the implementation
+def implementation(impl):
+    """Select the implementation.
 
     :param str impl: 'py'|'cpp'
     :raises ValueError: if impl unknown.
@@ -24,8 +24,8 @@ def set_impl(impl):
         VerletList = VL
 
     elif impl == 'cpp':
-        import et_md2.verletlist.__impl_cpp
-        VerletList = et_md2.verletlist.impl_cpp.VL
+        import et_md2.verletlist.c_vl
+        VerletList = et_md2.verletlist.c_vl.VL
 
     else:
         raise ValueError(f'Unknown VerletList implementation: {impl}.')

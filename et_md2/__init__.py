@@ -10,7 +10,7 @@ Top-level package for et_md2.
 __version__ = "0.0.0"
 
 try:
-    import et_md2.verletlist.impl_cpp
+    import et_md2.verletlist.c_vl
 except ModuleNotFoundError as e:
     # Try to build this binary extension:
     from pathlib import Path
@@ -18,7 +18,7 @@ except ModuleNotFoundError as e:
     from et_micc2.project import auto_build_binary_extension
     msg = auto_build_binary_extension(Path(__file__).parent, 'verletlist/impl_cpp')
     if not msg:
-        import et_md2.verletlist.impl_cpp
+        import et_md2.verletlist.c_vl
     else:
         click.secho(msg, fg='bright_red')
 

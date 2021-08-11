@@ -20,7 +20,7 @@ typedef hilbert::HilbertIndex_t H_t; // type for hilbert indices
 typedef hilbert::I_t            I_t; // type for indexing arrays
 
 // common code for dealing with numpy arrays
-#include "../../cpp/include/ArrayInfo.hpp"
+#include "../../include/ArrayInfo.hpp"
 
 #include <limits>
 // for debugging mainly
