@@ -27,7 +27,7 @@ def test_build_simple_1():
         r[:,ir] = x
         print(f'*** {msg[ir]} ***')
 
-        VerletList = et_md2.verletlist.set_impl(impl='py')
+        VerletList = et_md2.verletlist.implementation(impl='py')
         vl = VerletList(cutoff=2.5)
         vl.build_simple(r, keep2d=True)
         print(vl)
@@ -65,7 +65,7 @@ def test_build_simple_2():
         r[:,ir] = x
         print(f'*** {msg[ir]} ***')
 
-        VerletList = et_md2.verletlist.set_impl(impl='py')
+        VerletList = et_md2.verletlist.implementation(impl='py')
         vl = VerletList(cutoff=2.0)
         vl.build_simple(r, keep2d=True)
         print(vl)
@@ -102,7 +102,7 @@ def test_vl2pairs():
         r[:,ir] = x
         print(f'*** {msg[ir]} ***')
 
-        VerletList = et_md2.verletlist.set_impl(impl='py')
+        VerletList = et_md2.verletlist.implementation(impl='py')
         vl = VerletList(cutoff=2.0)
         vl.build_simple(r, keep2d=True)
         print(vl)
@@ -119,7 +119,7 @@ def test_build_simple_2b():
         r[:,ir] = x
         print(f'*** {msg[ir]} ***')
 
-        VerletList = et_md2.verletlist.set_impl(impl='py')
+        VerletList = et_md2.verletlist.implementation(impl='py')
         vl = VerletList(cutoff=2.0)
         vl.build_simple(r, keep2d=True)
         # print(vl)
@@ -138,7 +138,7 @@ def test_neighbours():
         r[:,ir] = x
         print(f'*** {msg[ir]} ***')
 
-        VerletList = et_md2.verletlist.set_impl(impl='py')
+        VerletList = et_md2.verletlist.implementation(impl='py')
         vl = VerletList(cutoff=2.0)
         vl.build_simple(r)
         print(vl.vl_size[0])
@@ -161,7 +161,7 @@ def test_build_1():
         r[:,ir] = x
         print(f'*** {msg[ir]} ***')
 
-        VerletList = et_md2.verletlist.set_impl(impl='py')
+        VerletList = et_md2.verletlist.implementation(impl='py')
         vl = VerletList(cutoff=cutoff)
         vl.build(r)
         print(vl)
@@ -181,7 +181,7 @@ def test_build_2():
     atoms = Atoms()
     atoms.lattice_positions(upper_corner=(5,5,5))
 
-    VerletList = et_md2.verletlist.set_impl(impl='py')
+    VerletList = et_md2.verletlist.implementation(impl='py')
     vl = VerletList(cutoff=cutoff)
     vl.build(atoms.r)
     print(vl)

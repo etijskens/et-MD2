@@ -18,8 +18,8 @@ import et_md2.verletlist
 
 def test_vl():
     natoms = 10
-    VerletList = et_md2.verletlist.set_impl('cpp')
-    vlist = VerletList(natoms,1.0);
+    VerletList = et_md2.verletlist.implementation('cpp')
+    vlist = VerletList(natoms,1.0)
 
     with pytest.raises(RuntimeError):
         vlist.has(natoms+1,9)

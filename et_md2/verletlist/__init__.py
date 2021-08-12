@@ -11,14 +11,19 @@ There is a Python and a C++ implementation.
 import numpy as np
 
 VerletList = None
+_impl_ = None
 
-def implementation(impl):
-    """Select the implementation.
+def implementation(impl=None):
+    """Select the Verlet list implementation.
 
-    :param str impl: 'py'|'cpp'
+    :param str impl: 'py'|'cpp'| None. If None, the currently chosen implementation is returned
     :raises ValueError: if impl unknown.
     """
-    global VerletList
+
+    global VerletList, _impl_
+
+    if impl is None:
+        return _impl_
 
     if impl == 'py':
         VerletList = VL
@@ -41,9 +46,6 @@ class VL:
         """Verlet lists of a number of atoms.
 
         :param float cutoff: cutoff distance
-        :param integer max_neighours: maximum size of an atom's Verlet list.
-            If this number is too small build|build_simple|build_grid will
-            raise IndexError.
 
         The initial data structure is a 2D integer numpy array. There is one
         row for each atom. Each row starts with the number of neighbours,
@@ -68,6 +70,7 @@ class VL:
         self.cutoff = cutoff
         self.vl2d = None
         self.debug = False
+
 
     @property
     def natoms(self):
@@ -299,6 +302,7 @@ class VL:
 
         return vli
 
+
     def has(self, ij):
         """Test if the verlet list of atom i contains atom j, ij = (i,j).
 
@@ -306,6 +310,57 @@ class VL:
         """
         i, j = ij
         return j in self.verlet_list(i)
+
+    def compute_interaction_forces(self, r, a, potential):
+        """Compute interaction forces.
+
+        :param np.ndarray r: atom position coordinates
+        :param np.ndarray a: atom acceleration coordinates
+        :param np.ndarray m: atom masses
+        :param potential: Potential object, must have force_factor(rij2) method.
+        """
+        for i in range(self.natoms):
+            o = self.vl_offset[i]
+            n = self.vl_size[i]
+            ri = r[i,:]
+            ai = a[i,:]
+            for k in range(o, o + n):
+                j = self.vl_list[k]
+                rij = r[j,:] - ri
+                rij2 = np.dot(rij, rij)
+                rij *= potential.force_factor(rij2)
+                ai += rij
+                a[j,:] -= rij
+
+        # not here, according to 'one function, one responsability' guideline.
+        # F = ma, a currently contains the forces, so we must divide by m to obtain the accelerations
+        # if atoms.m.shape[0] == 1:
+        #     for i in range(atoms.n):
+        #         a[i, :] /= atoms.m[0]
+        # elif atoms.m.shape[0] == atoms.n:
+        #     for i in range(atoms.n):
+        #         a[i, :] /= atoms.m[i]
+
+
+    def compute_interaction_energy(self, r, potential):
+        """Compute interaction energy.
+
+        :param np.ndarray r: atom coordinates
+        :param potential: Potential object, must have interaction_energy(rij2) method.
+        :return: interaction energy, epot.
+        """
+        epot = 0.0
+        for i in range(self.natoms):
+            o = self.vl_offset[i]
+            n = self.vl_size[i]
+            for k in range(o, o + n):
+                j = self.vl_list[k]
+                rij = r[j, :] - r[i, :]
+                rij2 = np.dot(rij, rij)
+                epot += potential.interaction_energy(rij2)
+
+        return epot
+
 
 def vl2set(vl):
     """Convert VerletList object into set of pairs."""

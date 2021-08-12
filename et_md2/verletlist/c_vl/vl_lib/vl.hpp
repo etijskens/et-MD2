@@ -14,7 +14,8 @@ typedef  unsigned int I_t;
  // Basic Verlet list data structure.
  // (Lacks a method build it from a set of atom coordinates).
     class VL
-    {//------------------------------------------------------------------------------
+    {//------------------x------------------------------------------------------------
+    private:
         bool linearised_;
         double cutoff_;
      // 2d Verlet list

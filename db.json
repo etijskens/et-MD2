@@ -91,5 +91,160 @@
     },
     "API.rst": "\n.. include:: ../et_md2/verletlist/impl_cpp.rst\n",
     "et_md2/__init__.py": "\ntry:\n    import et_md2.verletlist.impl_cpp\nexcept ModuleNotFoundError as e:\n    # Try to build this binary extension:\n    from pathlib import Path\n    import click\n    from et_micc2.project import auto_build_binary_extension\n    msg = auto_build_binary_extension(Path(__file__).parent, 'verletlist/impl_cpp')\n    if not msg:\n        import et_md2.verletlist.impl_cpp\n    else:\n        click.secho(msg, fg='bright_red')"
+  },
+  "interactions": {
+    "context": {
+      "verbosity": 1,
+      "project_path": "/Users/etijskens/software/dev/workspace/et-MD2",
+      "default_project_path": true,
+      "clear_log": false,
+      "_cfg_filename": "micc3.cfg",
+      "_cfg_dir": "/Users/etijskens/.micc2",
+      "invoked_subcommand": "add",
+      "overwrite_preferences": {},
+      "add_name": "interactions",
+      "flag_cli": false,
+      "flag_clisub": false,
+      "flag_py": true,
+      "flag_f90": false,
+      "flag_cpp": false,
+      "overwrite": false,
+      "backup": false,
+      "package_name": "et_md2",
+      "module_location_relative": ".",
+      "module_name": "interactions",
+      "module_srcdir": "et_md2/interactions",
+      "import_lib": "et_md2.interactions",
+      "templates": [
+        "submodule-py",
+        "submodule-py-test"
+      ]
+    },
+    "API.rst": "\n.. automodule:: et_md2.interactions\n   :members:\n\n",
+    "et_md2/__init__.py": "\nimport et_md2.interactions"
+  },
+  "interactions/lj": {
+    "context": {
+      "verbosity": 1,
+      "project_path": "/Users/etijskens/software/dev/workspace/et-MD2",
+      "default_project_path": true,
+      "clear_log": false,
+      "_cfg_filename": "micc3.cfg",
+      "_cfg_dir": "/Users/etijskens/.micc2",
+      "invoked_subcommand": "add",
+      "overwrite_preferences": {},
+      "add_name": "interactions/lj",
+      "flag_cli": false,
+      "flag_clisub": false,
+      "flag_py": true,
+      "flag_f90": false,
+      "flag_cpp": false,
+      "overwrite": false,
+      "backup": false,
+      "package_name": "et_md2",
+      "module_location_relative": "interactions",
+      "module_name": "lj",
+      "module_srcdir": "et_md2/interactions/lj",
+      "import_lib": "et_md2.interactions.lj",
+      "templates": [
+        "submodule-py",
+        "submodule-py-test"
+      ]
+    },
+    "API.rst": "\n.. automodule:: et_md2.interactions.lj\n   :members:\n\n",
+    "et_md2/__init__.py": "\nimport et_md2.interactions.lj"
+  },
+  "interactions/cpp": {
+    "context": {
+      "verbosity": 1,
+      "project_path": "/Users/etijskens/software/dev/workspace/et-MD2",
+      "default_project_path": true,
+      "clear_log": false,
+      "_cfg_filename": "micc3.cfg",
+      "_cfg_dir": "/Users/etijskens/.micc2",
+      "invoked_subcommand": "add",
+      "overwrite_preferences": {},
+      "add_name": "interactions/cpp",
+      "flag_cli": false,
+      "flag_clisub": false,
+      "flag_py": false,
+      "flag_f90": false,
+      "flag_cpp": true,
+      "overwrite": false,
+      "backup": false,
+      "package_name": "et_md2",
+      "module_location_relative": "interactions",
+      "module_name": "cpp",
+      "module_srcdir": "et_md2/interactions/cpp",
+      "import_lib": "et_md2.interactions.cpp",
+      "templates": [
+        "submodule-cpp",
+        "submodule-cpp-test"
+      ]
+    },
+    "API.rst": "\n.. include:: ../et_md2/interactions/cpp.rst\n",
+    "et_md2/__init__.py": "\ntry:\n    import et_md2.interactions.cpp\nexcept ModuleNotFoundError as e:\n    # Try to build this binary extension:\n    from pathlib import Path\n    import click\n    from et_micc2.project import auto_build_binary_extension\n    msg = auto_build_binary_extension(Path(__file__).parent, 'interactions/cpp')\n    if not msg:\n        import et_md2.interactions.cpp\n    else:\n        click.secho(msg, fg='bright_red')"
+  },
+  "potentials": {
+    "context": {
+      "verbosity": 1,
+      "project_path": "/Users/etijskens/software/dev/workspace/et-MD2",
+      "default_project_path": true,
+      "clear_log": false,
+      "_cfg_filename": "micc3.cfg",
+      "_cfg_dir": "/Users/etijskens/.micc2",
+      "invoked_subcommand": "add",
+      "overwrite_preferences": {},
+      "add_name": "potentials",
+      "flag_cli": false,
+      "flag_clisub": false,
+      "flag_py": true,
+      "flag_f90": false,
+      "flag_cpp": false,
+      "overwrite": false,
+      "backup": false,
+      "package_name": "et_md2",
+      "module_location_relative": ".",
+      "module_name": "potentials",
+      "module_srcdir": "et_md2/potentials",
+      "import_lib": "et_md2.potentials",
+      "templates": [
+        "submodule-py",
+        "submodule-py-test"
+      ]
+    },
+    "API.rst": "\n.. automodule:: et_md2.potentials\n   :members:\n\n",
+    "et_md2/__init__.py": "\nimport et_md2.potentials"
+  },
+  "potentials/cpp": {
+    "context": {
+      "verbosity": 1,
+      "project_path": "/Users/etijskens/software/dev/workspace/et-MD2",
+      "default_project_path": true,
+      "clear_log": false,
+      "_cfg_filename": "micc3.cfg",
+      "_cfg_dir": "/Users/etijskens/.micc2",
+      "invoked_subcommand": "add",
+      "overwrite_preferences": {},
+      "add_name": "potentials/cpp",
+      "flag_cli": false,
+      "flag_clisub": false,
+      "flag_py": false,
+      "flag_f90": false,
+      "flag_cpp": true,
+      "overwrite": false,
+      "backup": false,
+      "package_name": "et_md2",
+      "module_location_relative": "potentials",
+      "module_name": "cpp",
+      "module_srcdir": "et_md2/potentials/cpp",
+      "import_lib": "et_md2.potentials.cpp",
+      "templates": [
+        "submodule-cpp",
+        "submodule-cpp-test"
+      ]
+    },
+    "API.rst": "\n.. include:: ../et_md2/potentials/cpp.rst\n",
+    "et_md2/__init__.py": "\ntry:\n    import et_md2.potentials.cpp\nexcept ModuleNotFoundError as e:\n    # Try to build this binary extension:\n    from pathlib import Path\n    import click\n    from et_micc2.project import auto_build_binary_extension\n    msg = auto_build_binary_extension(Path(__file__).parent, 'potentials/cpp')\n    if not msg:\n        import et_md2.potentials.cpp\n    else:\n        click.secho(msg, fg='bright_red')"
   }
 }
